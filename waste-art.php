@@ -35,7 +35,6 @@ if ( !defined( 'ABSPATH' ) ) exit;
 /**
  * Main initiation class
  */
-include( dirname( __FILE__ ) . '/lib/requirements-check.php' );
 
 class Waste_Art {
 
