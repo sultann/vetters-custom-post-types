@@ -56,14 +56,12 @@ function vetters_waste_container_cpt() {
 		'labels'              => $labels,
 		// Features this CPT supports in Post Editor
 		'supports'            => array( 'title',  'thumbnail', 'custom-fields' ),
-		// You can associate this CPT with a taxonomy or custom taxonomy.
-		'taxonomies'          => array( 'genres' ),
 		/* A hierarchical CPT is like Pages and can have
 		* Parent and child items. A non-hierarchical CPT
 		* is like Posts.
 		*/
 		'hierarchical'        => false,
-		'public'              => true,
+		'public'              => false,
 		'show_ui'             => true,
 		'show_in_menu'        => true,
 		'show_in_nav_menus'   => true,
@@ -108,4 +106,129 @@ function save_vwa_container_values($post_id){
 	}else{
 		delete_post_meta($post_id, 'container_sizes');
 	}
+}
+
+add_shortcode('waste_art', 'waste_art_callback');
+
+function waste_art_callback(){
+	ob_start();
+    include VWA_INCLUDES . '/template.php';
+	return ob_get_clean();
+}
+
+
+class VWA_Container{
+	public $title;
+	public $image;
+	public $dropdown = [];
+
+	public function __set($property, $value) {
+		if ( property_exists( $this, $property ) ) {
+			$this->$property = $value;
+		}
+	}
+}
+
+
+add_action('wp_ajax_get_waste_art_containers', 'get_waste_art_containers');
+add_action('wp_ajax_nopriv_get_waste_art_containers', 'get_waste_art_containers');
+
+function get_waste_art_containers(){
+
+	$containers= get_posts(
+		array(
+			'posts_per_page' => -1,
+			'post_type' => 'vwa-container',
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'location',
+					'field' => 'term_id',
+					'terms' => sanitize_key($_GET['term_id'])
+				)
+			)
+		)
+	);
+    $response = [];
+
+
+    foreach ($containers as $container ){
+            $contrn = new VWA_Container();
+            $contrn->__set('title', $container->post_title);
+            if ( has_post_thumbnail($container->ID) ) {
+	            $image =  get_the_post_thumbnail_url($container->ID, 'full');
+	            $contrn->__set('image', $image);
+            }
+
+            $dropdown = get_post_meta($container->ID, 'container_sizes', true);
+            if($dropdown){
+	            $contrn->__set('dropdown', explode('|', $dropdown));
+            }
+	        $response[] = $contrn;
+    }
+
+
+
+    wp_send_json_success($response);
+}
+
+
+
+add_shortcode('waste_art_form', 'waste_art_form_callback');
+
+function waste_art_form_callback($attr){
+	ob_start();
+	$params = shortcode_atts(array(
+		'emails' => get_option('admin_email')
+    ),$attr);
+
+	include VWA_INCLUDES . '/form-template.php';
+	return ob_get_clean();
+}
+
+add_action('wp_ajax_get_waste_art_form_submit', 'waste_art_form_submit');
+add_action('wp_ajax_nopriv_get_waste_art_form_submit', 'waste_art_form_submit');
+
+function waste_art_form_submit(){
+    $emails = sanitize_text_field($_POST['emails']);
+
+	$message = '';
+	$message .= 'Hallo,<br/>';
+	$message .= 'folgender Auftrag wurde erteilt<br/>';
+
+    foreach ($_POST['form_fields'] as $key => $arr){
+	    $message .= '<stong>'.ucfirst($arr['name']).': </stong>'.$arr['value'].'<br/>';
+    }
+
+
+    $subject = "Vetters Container-Bestellung";
+	$headers[] = 'Content-Type: text/html; charset=UTF-8';
+	$headers[] = 'From: Vetters Containerservice <dispo@vetters-containerservice.de>';
+	$headers[] = 'Reply-To:Vetters <dispo@vetters-containerservice.de>';
+
+	wp_mail($emails, $subject, $message, $headers);
+
+
+
+    wp_send_json_success();
+
+}
+
+
+add_action('wp_ajax_get_customer_name_by_id', 'get_customer_name_by_id');
+add_action('wp_ajax_nopriv_get_customer_name_by_id', 'get_customer_name_by_id');
+
+function get_customer_name_by_id(){
+    $customer_id = $_GET['customer_id'];
+    $customers = [];
+
+	while(has_sub_field('customer_detail', 'options')){
+	  $customers[get_sub_field('customer_number', 'options')] = get_sub_field('customer_name', 'options');
+    }
+
+    if(isset($customers[$customer_id])){
+	    wp_send_json_success(['name' => $customers[$customer_id]]);
+    }else{
+	    wp_send_json_error();
+    }
+
 }

@@ -1,11 +1,10 @@
 /**
- * Waste Art
+ * Waste Art - v0.1.0 - 2017-06-27
  * http://pluginever.com
  *
- * Copyright (c) 2017 PluginEver
- * Licensed under the GPLv2+ license.
+ * Copyright (c) 2017;
+ * Licensed GPLv2+
  */
-
 /*jslint browser: true */
 /*global jQuery:false */
 

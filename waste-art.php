@@ -136,8 +136,18 @@ class Waste_Art {
 	 */
 	function load_assets(){
 		wp_register_style('waste-art', VWA_ASSETS.'/css/waste-art.css', [], date('i'));
-		wp_register_script('waste-art', VWA_ASSETS.'/js/waste-art.js', ['jquery'], date('i'), true);
-		wp_localize_script('waste-art', 'jsobject', ['ajaxurl' => admin_url( 'admin-ajax.php' )]);
+		wp_register_script('waste-art', VWA_ASSETS.'/js/waste-art.js', ['jquery', 'jquery-ui-datepicker'], date('i'), true);
+		wp_register_style('jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css');
+		wp_enqueue_style( 'jquery-ui' );
+		$form_page = get_page_by_title('Containerbestellung');
+		$permalink = get_the_permalink($form_page->ID);
+		wp_localize_script('waste-art', 'jsobject',
+			[
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'form_page'=>$permalink,
+				'printcss' => get_template_directory_uri().'/css/print.css',
+				'logo' => get_template_directory_uri().'/images/Vetters-Logo-UMWELT-rechtsb-vec.jpg'
+			]);
 		wp_enqueue_style('waste-art');
 		wp_enqueue_script('waste-art');
 	}

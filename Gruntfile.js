@@ -29,31 +29,31 @@ module.exports = function(grunt) {
                     dest: 'assets/js/waste-art.js'
             }
         },
-       jshint: {
-        all: [
-            'Gruntfile.js',
-            'assets/js/src/**/*.js',
-            'assets/js/test/**/*.js'
-        ],
-            options: {
-            curly: true,
-                eqeqeq: true,
-                immed: true,
-                latedef: true,
-                newcap: true,
-                noarg: true,
-                sub: true,
-                unused: true,
-                undef: true,
-                boss: true,
-                eqnull: true,
-                globals: {
-                exports: true,
-                    module: false
-            },
-            predef: ['document', 'window']
-        }
-    },
+    //    jshint: {
+    //     all: [
+    //         'Gruntfile.js',
+    //         'assets/js/src/**/*.js',
+    //         'assets/js/test/**/*.js'
+    //     ],
+    //         options: {
+    //         curly: true,
+    //             eqeqeq: true,
+    //             immed: true,
+    //             latedef: true,
+    //             newcap: true,
+    //             noarg: true,
+    //             sub: true,
+    //             unused: true,
+    //             undef: true,
+    //             boss: true,
+    //             eqnull: true,
+    //             globals: {
+    //             exports: true,
+    //                 module: false
+    //         },
+    //         predef: ['document', 'window']
+    //     }
+    // },
 
     uglify: {
         all: {
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
             options: {
                 banner: compactBannerTemplate,
                     mangle: {
-                    except: ['jQuery']
+                    // except: ['jQuery']
                 }
             }
         }
@@ -99,7 +99,7 @@ module.exports = function(grunt) {
 
         watch:  {
              options: {
-                livereload: true,
+                livereload: true
             },
             
             sass: {
@@ -112,7 +112,7 @@ module.exports = function(grunt) {
             
             scripts: {
                 files: ['assets/js/src/**/*.js', 'assets/js/vendor/**/*.js'],
-                tasks: ['jshint', 'concat', 'uglify'],
+                tasks: ['concat', 'uglify'],
                 options: {
                     debounceDelay: 500
                 }
@@ -226,7 +226,7 @@ module.exports = function(grunt) {
 
     // Default task.
     
-    grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'sass', 'cssmin'] );
+    grunt.registerTask( 'default', ['concat', 'uglify', 'sass', 'cssmin'] );
     
    
 
