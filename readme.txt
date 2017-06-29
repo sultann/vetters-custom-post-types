@@ -1,5 +1,5 @@
 === Waste Art ===
-Contributors:      WebDevStudios  
+Contributors:      Pluginever
 Donate link:         
 Tags:  
 Requires at least: 3.6.0  

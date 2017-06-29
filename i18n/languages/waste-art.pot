@@ -1,0 +1,146 @@
+# Copyright (C) 2017 PluginEver
+# This file is distributed under the GPLv2+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Waste Art 0.1.0\n"
+"Report-Msgid-Bugs-To: http://pluginever.com/support/\n"
+"POT-Creation-Date: 2017-06-29 07:23:02+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <support@pluginever.com>\n"
+"X-Generator: grunt-wp-i18n1.0.0\n"
+
+#: includes/functions.php:14
+msgid "Search Waste Arts"
+msgstr ""
+
+#: includes/functions.php:15
+msgid "All Waste Arts"
+msgstr ""
+
+#: includes/functions.php:16
+msgid "Parent Waste Art"
+msgstr ""
+
+#: includes/functions.php:17
+msgid "Parent Waste Art:"
+msgstr ""
+
+#: includes/functions.php:18
+msgid "Edit Waste Art"
+msgstr ""
+
+#: includes/functions.php:19
+msgid "Update Waste Art"
+msgstr ""
+
+#: includes/functions.php:20
+msgid "Add New Waste Art"
+msgstr ""
+
+#: includes/functions.php:21
+msgid "New Waste Art Name"
+msgstr ""
+
+#: includes/functions.php:22
+msgid "Waste Arts"
+msgstr ""
+
+#: includes/functions.php:40
+msgid "Containers"
+msgstr ""
+
+#: includes/functions.php:41
+msgid "Parent Container"
+msgstr ""
+
+#: includes/functions.php:42
+msgid "All Containers"
+msgstr ""
+
+#: includes/functions.php:43
+msgid "View Container"
+msgstr ""
+
+#: includes/functions.php:44
+msgid "Add New Container"
+msgstr ""
+
+#: includes/functions.php:45
+msgid "Add New"
+msgstr ""
+
+#: includes/functions.php:46
+msgid "Edit Container"
+msgstr ""
+
+#: includes/functions.php:47
+msgid "Update Container"
+msgstr ""
+
+#: includes/functions.php:48
+msgid "Search Container"
+msgstr ""
+
+#: includes/functions.php:49
+msgid "Not Found"
+msgstr ""
+
+#: includes/functions.php:50
+msgid "Not found in Trash"
+msgstr ""
+
+#: includes/functions.php:54
+msgid "container"
+msgstr ""
+
+#: includes/functions.php:55
+msgid "Container news and reviews"
+msgstr ""
+
+#: includes/functions.php:85
+msgid "Container sizes"
+msgstr ""
+
+#: includes/functions.php:97
+msgid "Separate by comma. eg 10mm, 200m3"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Waste Art"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://pluginever.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "The best WordPress plugin ever made!"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "PluginEver"
+msgstr ""
+
+#: includes/functions.php:12
+msgctxt "taxonomy general name"
+msgid "Waste Arts"
+msgstr ""
+
+#: includes/functions.php:13
+msgctxt "taxonomy singular name"
+msgid "Waste Art"
+msgstr ""
+
+#: includes/functions.php:38
+msgctxt "Post Type General Name"
+msgid "Containers"
+msgstr ""
+
+#: includes/functions.php:39
+msgctxt "Post Type Singular Name"
+msgid "Container"
+msgstr ""

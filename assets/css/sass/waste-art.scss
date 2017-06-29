@@ -767,6 +767,10 @@ h2.headline {
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    &.error{
+      color: #fff !important;
+      background-color: #bb0619;
+    }
   }
 
   input[type='submit']{
@@ -786,8 +790,8 @@ h2.headline {
     margin-bottom: 20px;
   }
   .waste-date-picker{
-    background: #fff !important;
-    color: #000 !important;
+    background: #fff;
+    color: #000;
   }
   .button{
     background: #e08c3c none repeat scroll 0 0;
@@ -822,7 +826,14 @@ h2.headline {
   }
 
 }
-
+.waste-art-container-form{
+  .waster-art-input{
+    &.error{
+      color: #fff !important;
+      background-color: #bb0619;
+    }
+  }
+}
 
 @media (max-width: 640px) {
   ul.nav-menu, div.nav-menu > ul{

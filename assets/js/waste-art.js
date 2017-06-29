@@ -1,5 +1,5 @@
 /**
- * Waste Art - v0.1.0 - 2017-06-27
+ * Waste Art - v0.1.0 - 2017-06-29
  * http://pluginever.com
  *
  * Copyright (c) 2017;
@@ -81,8 +81,20 @@ window.Waste_Art = (function (window, document, $, undefined) {
         $(document).on('click', '.container-submit-btn', function(e) {
             e.preventDefault();
             var form = $(this).closest('form');
+            form.find('.container-size-selector').bind('change', function () {
+                if($(this).val() === ''){
+                    $(this).addClass('error');
+                }else{
+                    $(this).removeClass('error');
+                }
+            });
             var selected = form.find('.container-size-selector').val();
-            if(selected === '') return false;
+            if(selected === ''){
+                form.find('.container-size-selector').addClass('error');
+                return false;
+            }
+
+
 
             form.submit();
 
@@ -105,21 +117,55 @@ window.Waste_Art = (function (window, document, $, undefined) {
             });
 
             if (!is_form_valid) {
-                $('.waste-art-form-submit, .print-form-btn').attr('disabled', 'disabled');
+                // $('.waste-art-form-submit, .print-form-btn').attr('disabled', 'disabled');
             } else {
-                $('.waste-art-form-submit, .print-form-btn').removeAttr('disabled');
+                // $('.waste-art-form-submit, .print-form-btn').removeAttr('disabled');
             }
         }
 
-        waste_art_form_check();
+        // waste_art_form_check();
+        //
+        // $('.waster-art-input').on('change', function () {
+        //     waste_art_form_check();
+        // });
 
-        $('.waster-art-input').on('change', function () {
-            waste_art_form_check();
+        $('.waste-art-form-submit, .print-form-btn').on('click', function(){
+            $('.waster-art-input').each(function () {
+                $(this).bind('change',function () {
+                    if($(this).val() === ''){
+                        $(this).addClass('error');
+                    }else{
+                        $(this).removeClass('error');
+                    }
+                });
+
+                if($(this).val() === ''){
+                    $(this).addClass('error');
+                }
+            });
+
+            var is_form_valid = true;
+
+            $('.waster-art-input').each(function () {
+                if ($(this).val() == '') {
+                    is_form_valid = false;
+                    return false;
+                }
+            });
+
+            if (!is_form_valid) {
+                return false;
+            } else {
+               return true;
+            }
+
         });
-
 
         $('.waste-art-container-form').on('submit', function (e) {
             e.preventDefault();
+
+
+
             var form_data = $(this).serializeArray();
             window.waster_art_form_data = form_data;
             console.log($(this).serializeArray());
@@ -180,8 +226,17 @@ window.Waste_Art = (function (window, document, $, undefined) {
 
 
         $('.print-form-btn').on('click', function () {
-            if ($(this).is(':disabled')) {
-                console.log('disabled');
+            var is_form_valid = true;
+
+            $('.waster-art-input').each(function () {
+                if ($(this).val() == '') {
+                    is_form_valid = false;
+                    return false;
+                }
+            });
+
+            if (!is_form_valid) {
+                return false;
             } else {
                 PrintDoc();
             }
@@ -259,16 +314,7 @@ window.Waste_Art = (function (window, document, $, undefined) {
             var customer_number = jQuery('*[name="kundennummer"]').val();
             var abfallart = jQuery('*[name="abfallart"]').val();
             var containername = jQuery('*[name="container"]').val();
-            //
-            // var name = jQuery('.uname input').val();
-            // var address = jQuery('.state input, .post input, .city input').val();
-            // var phone = jQuery('.Telefon input').val();
-            // var date = jQuery('.date input').val();
-            //
-            // var cust_num = jQuery('.kundennumber input').val();
-            // var state = jQuery('.state input').val();
-            // var post = jQuery('.post input').val();
-            // var city = jQuery('.city input').val();
+
 
             var today = new Date();
             var dd = today.getDate();
