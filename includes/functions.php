@@ -120,7 +120,7 @@ function waste_art_callback(){
 class VWA_Container{
 	public $title;
 	public $image;
-	public $dropdown = [];
+	public $dropdown = array();
 
 	public function __set($property, $value) {
 		if ( property_exists( $this, $property ) ) {
@@ -219,14 +219,14 @@ add_action('wp_ajax_nopriv_get_customer_name_by_id', 'get_customer_name_by_id');
 
 function get_customer_name_by_id(){
     $customer_id = $_GET['customer_id'];
-    $customers = [];
+    $customers = array();
 
 	while(has_sub_field('customer_detail', 'options')){
 	  $customers[get_sub_field('customer_number', 'options')] = get_sub_field('customer_name', 'options');
     }
 
     if(isset($customers[$customer_id])){
-	    wp_send_json_success(['name' => $customers[$customer_id]]);
+	    wp_send_json_success(array('name' => $customers[$customer_id]));
     }else{
 	    wp_send_json_error();
     }

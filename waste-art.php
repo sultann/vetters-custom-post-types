@@ -40,7 +40,6 @@ class Waste_Art {
 
 	public $version = '1.0.0';
 
-	public $dependency_plugins = [];
 
 	
 	/**
